@@ -41,10 +41,14 @@
        distinct
        sort))
 
+(defn weight
+  [word common-words]
+  {:weight 0 :word word})
+
 (defn -main
   [& args]
   (let [words (str/split (first args) #"\s")]
-    (->> (get-command-names words 1 (read-words "resources/words.txt"))
+    (->> (get-command-names words 2 (read-words "resources/words.txt"))
          (filter #(< 2 (count %)))
          println)))
 
