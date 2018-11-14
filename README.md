@@ -1,6 +1,6 @@
-# meme
+# meme (mei mei)
 
-A Clojure library designed to ... well, that part is up to you.
+自作のCLIツールを命名するためのツール。
 
 ## コマンドの例
 
