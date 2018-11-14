@@ -18,8 +18,8 @@
 
 (deftest test-include-words
   (testing "include-words"
-    (testing "単語リストを含むものを返す"
-      (is (= ["con" "cat"] (include-words "concat" ["con" "cat" "x"]))))
+    (testing "単語リストを含むものを返す。一文字のワードは除外"
+      (is (= ["con" "cat" "c"] (include-words "concat" ["con" "cat" "x" "c"]))))
     ))
 
 (deftest test-get-command-names

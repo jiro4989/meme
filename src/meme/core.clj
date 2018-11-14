@@ -37,7 +37,7 @@
 
 (defn get-command-names
   [words n common-words]
-  (-> (conj (get-round-robin-words words n)
+  (->> (conj (get-round-robin-words words n)
             (map #(include-words % common-words) words))
       flatten
       distinct
@@ -45,6 +45,8 @@
 
 (defn -main
   [& args]
-  (println (include-words "concatenate" (read-words "resources/words.txt")))
-  )
+  (let [words (str/split (first args) #"\s")]
+    (->> (get-command-names words 1 (read-words "resources/words.txt"))
+         (filter #(< 2 (count %)))
+         println)))
 
