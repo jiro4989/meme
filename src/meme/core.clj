@@ -38,10 +38,10 @@
 (defn get-command-names
   [words n common-words]
   (->> (conj (get-round-robin-words words n)
-            (map #(include-words % common-words) words))
-      flatten
-      distinct
-      sort))
+             (map #(include-words % common-words) words))
+       flatten
+       distinct
+       sort))
 
 (defn -main
   [& args]
