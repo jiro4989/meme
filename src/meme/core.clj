@@ -3,17 +3,15 @@
             [clojure.java.io :as io]))
 
 (defn takes
-  "文字列から指定数値まで順に取り出して返す
-  ex: (takes 2 xyz)
-  -> [x y]"
+  "文字列から文字列を指定数まで順に取り出して返す
+  ex: (takes 2 \"xyz\")
+  -> [\"x\" \"xy\"]"
   [n word]
   (loop [taked []
          x 1]
     (if (< n x)
       taked
-      (recur (conj taked (->> word
-                              (take x)
-                              str/join))
+      (recur (conj taked (str/join (take x word)))
              (inc x)))))
 
 (defn get-round-robin-words
@@ -24,14 +22,14 @@
        (reduce #(for [x %1 y %2] (.concat x y)))))
 
 (defn read-words
-  "ファイルを読み込み、文字列を小文字に変換して重複を削除してベクタとして返す。"
+  "ファイルを読み込み、文字列を小文字に変換して重複を削除してベクタとして返す"
   [fp]
   (->> (str/split (slurp fp) #"\n")
        (map #(str/lower-case %))
        distinct))
 
 (defn include-words
-  "対象文字の中に単語リストのものが含まれているものを返す"
+  "単語リストが対象文字列内に含まれていれば返す"
   [word words]
   (filter #(str/includes? word %) words))
 
