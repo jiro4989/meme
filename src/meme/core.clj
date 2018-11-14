@@ -4,8 +4,8 @@
 
 (defn takes
   "文字列から指定数値まで順に取り出して返す
-   ex: (takes 2 xyz)
-       -> [x y]"
+  ex: (takes 2 xyz)
+  -> [x y]"
   [n word]
   (loop [taked []
          x 1]
@@ -34,6 +34,14 @@
   "対象文字の中に単語リストのものが含まれているものを返す"
   [word words]
   (filter #(str/includes? word %) words))
+
+(defn get-command-names
+  [words n common-words]
+  (-> (conj (get-round-robin-words words n)
+            (map #(include-words % common-words) words))
+      flatten
+      distinct
+      sort))
 
 (defn -main
   [& args]

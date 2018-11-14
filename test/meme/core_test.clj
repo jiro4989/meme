@@ -22,3 +22,9 @@
       (is (= ["con" "cat"] (include-words "concat" ["con" "cat" "x"]))))
     ))
 
+(deftest test-get-command-names
+  (testing "get-command-namesは"
+    (testing "コマンド名を返す"
+      (is (= ["cat" "cc" "con"] (get-command-names ["cat" "concat"] 1 ["cat" "con"]))))
+    ))
+
