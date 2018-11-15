@@ -1,6 +1,7 @@
 (ns meme.core
   (:require [clojure.string :as str]
-            [clojure.java.io :as io]))
+            [clojure.java.io :as io])
+  (:gen-class))
 
 (defn takes
   "文字列から文字列を指定数まで順に取り出して返す
