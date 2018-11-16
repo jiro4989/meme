@@ -17,9 +17,9 @@
     ))
 
 (deftest test-include-words
-  (testing "include-words"
+  (testing "include-common-words"
     (testing "単語リストを含むものを返す。一文字のワードは除外"
-      (is (= ["con" "cat" "c"] (include-words "concat" ["con" "cat" "x" "c"]))))
+      (is (= ["con" "cat" "c"] (include-common-words "concat" ["con" "cat" "x" "c"]))))
     ))
 
 (deftest test-command-names

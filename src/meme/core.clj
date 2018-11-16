@@ -29,7 +29,7 @@
        (map #(str/lower-case %))
        distinct))
 
-(defn include-words
+(defn include-common-words
   "単語リストが対象文字列内に含まれていれば返す"
   [word words]
   (filter #(str/includes? word %) words))
@@ -37,7 +37,7 @@
 (defn command-names
   [words n common-words]
   (->> (conj (round-robin-words words n)
-             (map #(include-words % common-words) words))
+             (map #(include-common-words % common-words) words))
        flatten
        distinct
        sort))
