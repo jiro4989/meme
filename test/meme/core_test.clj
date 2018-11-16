@@ -2,12 +2,12 @@
   (:require [clojure.test :refer :all]
             [meme.core :refer :all]))
 
-(deftest test-get-round-robin-words
-  (testing "get-round-robin-wordsは"
+(deftest test-round-robin-words
+  (testing "round-robin-wordsは"
     (testing "先頭の文字を取得してリストで返す"
-      (is (= ["su"](get-round-robin-words ["switch" "user"] 1))))
+      (is (= ["su"](round-robin-words ["switch" "user"] 1))))
     (testing "先頭の文字を取得してリストで返す"
-      (is (= ["su" "sus" "swu" "swus"](get-round-robin-words ["switch" "user"] 2))))
+      (is (= ["su" "sus" "swu" "swus"](round-robin-words ["switch" "user"] 2))))
     ))
 
 (deftest test-takes
@@ -22,9 +22,9 @@
       (is (= ["con" "cat" "c"] (include-words "concat" ["con" "cat" "x" "c"]))))
     ))
 
-(deftest test-get-command-names
-  (testing "get-command-namesは"
+(deftest test-command-names
+  (testing "command-namesは"
     (testing "コマンド名を返す"
-      (is (= ["cat" "cc" "con"] (get-command-names ["cat" "concat"] 1 ["cat" "con"]))))
+      (is (= ["cat" "cc" "con"] (command-names ["cat" "concat"] 1 ["cat" "con"]))))
     ))
 

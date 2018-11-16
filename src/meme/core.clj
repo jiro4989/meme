@@ -15,7 +15,7 @@
       (recur (conj taked (str/join (take x word)))
              (inc x)))))
 
-(defn get-round-robin-words
+(defn round-robin-words
   "単語のリストの先頭の文字列を取得し、総当たりで組み合わせて返す"
   [words n]
   (->> words
@@ -34,9 +34,9 @@
   [word words]
   (filter #(str/includes? word %) words))
 
-(defn get-command-names
+(defn command-names
   [words n common-words]
-  (->> (conj (get-round-robin-words words n)
+  (->> (conj (round-robin-words words n)
              (map #(include-words % common-words) words))
        flatten
        distinct
@@ -49,7 +49,7 @@
 (defn -main
   [& args]
   (let [words (str/split (first args) #"\s")]
-    (->> (get-command-names words 2 (read-words "resources/words.txt"))
+    (->> (command-names words 2 (read-words "resources/words.txt"))
          (filter #(< 2 (count %)))
          println)))
 
