@@ -42,7 +42,7 @@
        distinct
        sort))
 
-(defn contains-then-inc
+(defn weight-contain-word
   [word common-words]
   (if (some #(= % word) common-words)
     5
@@ -81,7 +81,7 @@
 
 (defn weight
   [word common-words]
-  (let [w (+ (contains-then-inc word common-words)
+  (let [w (+ (weight-contain-word word common-words)
              (weight-vowel word)
              (weight-short-consonant word))]
     {:weight w :word word}))

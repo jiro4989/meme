@@ -22,14 +22,14 @@
       (is (= ["con" "cat" "c"] (include-common-words "concat" ["con" "cat" "x" "c"]))))
     ))
 
-(deftest test-contains-then-inc
-  (testing "contains-then-incは"
+(deftest test-weight-contain-word
+  (testing "weight-contain-wordは"
     (testing "単語が一般用語に含まれるなら5を返す"
-      (is (= 5 (contains-then-inc "cat" ["concat" "cat"]))))
+      (is (= 5 (weight-contain-word "cat" ["concat" "cat"]))))
     (testing "単語が一般用語に含まれないなら0を返す"
-      (is (= 0 (contains-then-inc "cat" ["concat"]))))
+      (is (= 0 (weight-contain-word "cat" ["concat"]))))
     (testing "単語が一般用語に含まれないなら0を返す"
-      (is (= 0 (contains-then-inc "cat" []))))
+      (is (= 0 (weight-contain-word "cat" []))))
     ))
 
 (deftest test-weight-vowel
