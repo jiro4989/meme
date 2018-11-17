@@ -52,7 +52,7 @@
             (:help options))
       (println (usage summary))
       (let [words (str/split (first args) #"\s")
-            common-words (read-words "resources/words.txt")
+            common-words (read-words "resources/word.txt")
             round-words (word/round-robin-words words 2)]
         (doseq [m (->> (word/command-names words 2 common-words)
                        (filter #(< 1 (count %)))
