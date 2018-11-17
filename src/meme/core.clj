@@ -1,6 +1,7 @@
 (ns meme.core
   (:require [clojure.string :as str]
-            [clojure.java.io :as io])
+            [clojure.java.io :as io]
+            [meme.weight :as w])
   (:gen-class))
 
 (defn takes
@@ -45,8 +46,10 @@
 
 (defn -main
   [& args]
-  (let [words (str/split (first args) #"\s")]
-    (->> (command-names words 2 (read-words "resources/words.txt"))
-         (filter #(< 2 (count %)))
-         println)))
-
+  (let [words (str/split (first args) #"\s")
+        common-words (read-words "resources/words.txt")]
+    (doseq [m (->> (command-names words 2 common-words)
+                   (filter #(< 1 (count %)))
+                   (map #(w/weight % common-words))
+                   (sort #(< (:weight %1) (:weight %2))))]
+      (println m))))
