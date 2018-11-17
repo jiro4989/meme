@@ -8,4 +8,5 @@
                  [org.clojure/tools.cli "0.4.1"]
                  [criterium "0.4.4"]]
   :profiles {:uberjar {:main meme.core :aot :all}}
+  :resource-paths ["src/resources"]
   :main meme.core)
