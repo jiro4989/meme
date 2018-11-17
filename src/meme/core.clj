@@ -20,7 +20,7 @@
   [words n]
   (->> words
        (map #(takes n %))
-       (reduce #(for [x %1 y %2] (.concat x y)))))
+       (reduce #(for [x %1 y %2] (str x y)))))
 
 (defn read-words
   "ファイルを読み込み、文字列を小文字に変換して重複を削除してベクタとして返す"
