@@ -46,11 +46,28 @@
 
 ## Usage
 
-FIXME
+基本的な使い方は以下の通り。
+
+```bash
+java -jar meme-1.0.0-SNAPSHOT-standalone.jar "origin full name"
+# ex: grep -> global regular expression print
+```
+
+ヘルプ
+
+```bash
+java -jar meme-1.0.0-SNAPSHOT-standalone.jar -h
+```
+
+    meme is naming tool like linux commands.
+
+    options:
+      -p, --padding-size int             3  padding size
+      -d, --delimiter str                :  delimiter
+      -r, --round-prefix-chars-size int  2  round prefix characters size
+      -n, --none
+      -h, --help
 
 ## License
 
-Copyright © 2018 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Copyright © 2018 jiro4989
