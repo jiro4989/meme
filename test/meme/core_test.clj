@@ -14,12 +14,12 @@
       (is (= "  1,cat" (format-line m {:none false :padding-size 3 :delimiter ","}))))
     ))
 
-(deftest test-weighting-words
-  (testing "weighting-wordsは"
+(deftest test-weight-words
+  (testing "weight-wordsは"
     (testing "重みを付けて返す"
-      (is (= [{:weight 7 :name "grep"}] (weighting-words ["grep"] []))))
+      (is (= [{:weight 7 :name "grep"}] (weight-words ["grep"] []))))
     (testing "常用英単語に同名のものがあれば重みがつく"
-      (is (= [{:weight 7 :name "ab"} {:weight 12 :name "grep"}] (weighting-words ["grep" "ab"] ["grep"]))))
+      (is (= [{:weight 7 :name "ab"} {:weight 12 :name "grep"}] (weight-words ["grep" "ab"] ["grep"]))))
     ))
 
 (deftest test-main

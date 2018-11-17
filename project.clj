@@ -1,4 +1,4 @@
-(defproject meme "1.0.2-SNAPSHOT"
+(defproject meme "1.0.3-SNAPSHOT"
   :description "meme is naming tool like linux commands."
   :url "https://github.com/jiro4989/meme"
   :plugins [[lein-kibit "0.1.6"]]

@@ -24,7 +24,7 @@
       none (format "%s" n)
       :else (format (str "%" padding-size "d" delimiter "%s") weight n))))
 
-(defn weighting-words
+(defn weight-words
   "コマンド名候補リストに重みを付けてマップとして返す"
   [round-words common-words]
   (->> round-words
@@ -67,5 +67,5 @@
       :else (let [words (str/split (first arguments) #"\s")
                   common-words (read-words "resources/word.txt")
                   round-words (word/round-robin-words words (:round-prefix-chars-size options))]
-              (doseq [m (weighting-words round-words common-words)]
+              (doseq [m (weight-words round-words common-words)]
                 (println (format-line m options)))))))
