@@ -22,7 +22,6 @@
                 (/ (count word))
                 float)]
       (cond
-        (< 0.75 r) 3
         (< 0.5 r) 2
         (< 0.25 r) 1
         :else 0))))
@@ -36,6 +35,7 @@
       (= c 3) 2
       (= c 4) 2
       (= c 5) 1
+      (< 10 c) -65535
       :else 0)))
 
 (defn weight

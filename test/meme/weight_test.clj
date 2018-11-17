@@ -14,8 +14,6 @@
 
 (deftest test-weight-vowel
   (testing "weight-vowelは"
-    (testing "母音が75%含まれるなら3"
-      (is (= 3 (weight-vowel "aiueo"))))
     (testing "母音が50%含まれるなら2"
       (is (= 2 (weight-vowel "caaat"))))
     (testing "母音が25%含まれるなら1"
@@ -42,6 +40,8 @@
       (is (= 0 (weight-short-word "1"))))
     (testing "文字数が2〜5以外なら0"
       (is (= 0 (weight-short-word "123456"))))
+    (testing "文字数が10より多いと-65535"
+      (is (= -65535 (weight-short-word "12345678901"))))
     (testing "空文字なら0"
       (is (= 0 (weight-short-word ""))))
     (testing "空文字なら0"
@@ -50,7 +50,9 @@
 
 (deftest test-weight
   (testing "weightは"
-    (testing "TODO"
+    (testing "汎用的な名前なら重みは大きい"
       (is (= {:weight 8 :word "cat"} (weight "cat" ["concat" "cat"]))))
+    (testing ""
+      (is (= {:weight 4 :word "aaa"} (weight "aaa" ["concat" "cat"]))))
     ))
 
