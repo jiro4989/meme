@@ -4,12 +4,14 @@
 (def vowel "aiueo")
 
 (defn weight-contain-word
+  "指定の単語が、単語リストに含まれる場合は重み値を返す"
   [word common-words]
   (if (some #(= % word) common-words)
     5
     0))
 
 (defn weight-vowel
+  "母音がコマンド名に含まれる割合に応じた重みを返す"
   [word]
   (if (empty? word)
     0
@@ -26,6 +28,7 @@
         :else 0))))
 
 (defn weight-short-consonant
+  "短い子音のみで構成されるかどうかで重みをつける"
   [word]
   (if (or (empty? word)
           (not (zero? (->> word
@@ -41,6 +44,7 @@
         :else 0))))
 
 (defn weight
+  "重みを付与したマップとして返す"
   [word common-words]
   (let [w (+ (weight-contain-word word common-words)
              (weight-vowel word)

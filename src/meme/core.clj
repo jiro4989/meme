@@ -35,6 +35,7 @@
   (filter #(str/includes? word %) words))
 
 (defn command-names
+  "コマンド名を返す"
   [words n common-words]
   (->> (conj (round-robin-words words n)
              (map #(include-common-words % common-words) words))
