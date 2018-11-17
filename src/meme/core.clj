@@ -47,7 +47,7 @@
 
 (def cli-options
   ; 重み数値の空白詰め桁数
-  [["-p" "--padding-size size" "padding size"
+  [["-p" "--padding-size" "padding size"
     :default 3
     :parse-fn #(Integer/parseInt %)
     :validate [#(< 0 %) "number is over 0"]]
@@ -55,12 +55,20 @@
    ["-n" "--none"]
    ["-h" "--help"]])
 
+(defn usage
+  [summary]
+  (->> ["meme is naming tool like linux commands."
+        ""
+        "options:"
+        summary]
+       (str/join \newline)))
+
 (defn -main
   [& args]
   (let [{:keys [options arguments errors summary]} (parse-opts args cli-options)]
     (if (or (zero? (count arguments))
             (:help options))
-      (println summary)
+      (println (usage summary))
       (let [words (str/split (first args) #"\s")
             common-words (read-words "resources/words.txt")
             round-words (round-robin-words words 2)]
