@@ -32,10 +32,10 @@
   [word]
   (let [c (count word)]
     (cond
-      (< c 2) 0
-      (< c 3) 2
-      (< c 4) 1
-      (< c 5) 0
+      (= c 2) 1
+      (= c 3) 2
+      (= c 4) 2
+      (= c 5) 1
       :else 0)))
 
 (defn weight

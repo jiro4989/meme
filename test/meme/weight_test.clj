@@ -30,25 +30,27 @@
 
 (deftest test-weight-short-word
   (testing "weight-short-wordは"
-    (testing "子音が1文字なら0"
-      (is (= 0 (weight-short-word "x"))))
-    (testing "子音が2文字なら2"
-      (is (= 2 (weight-short-word "xy"))))
-    (testing "子音が3文字なら1"
-      (is (= 1 (weight-short-word "cat"))))
-    (testing "子音が4文字以上なら0"
-      (is (= 0 (weight-short-word "xyzx"))))
-    (testing "子音が4文字以上なら0"
-      (is (= 0 (weight-short-word "xyzxy"))))
+    (testing "単語が2文字なら1"
+      (is (= 1 (weight-short-word "xy"))))
+    (testing "単語が3文字なら2"
+      (is (= 2 (weight-short-word "cat"))))
+    (testing "単語が4文字なら2"
+      (is (= 2 (weight-short-word "xyzx"))))
+    (testing "単語が5文字なら1"
+      (is (= 1 (weight-short-word "xyzxy"))))
+    (testing "文字数が2〜5以外なら0"
+      (is (= 0 (weight-short-word "1"))))
+    (testing "文字数が2〜5以外なら0"
+      (is (= 0 (weight-short-word "123456"))))
     (testing "空文字なら0"
       (is (= 0 (weight-short-word ""))))
     (testing "空文字なら0"
       (is (= 0 (weight-short-word nil))))
     ))
 
-; (deftest test-weight
-;   (testing "weightは"
-;     (testing "TODO"
-;       (is (= 0 (weight "cat" ["concat" "cat"]))))
-;     ))
+(deftest test-weight
+  (testing "weightは"
+    (testing "TODO"
+      (is (= {:weight 8 :word "cat"} (weight "cat" ["concat" "cat"]))))
+    ))
 
