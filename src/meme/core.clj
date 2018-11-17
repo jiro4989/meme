@@ -15,24 +15,27 @@
 
 (def cli-options
   ; 重み数値の空白詰め桁数
-  [["-p" "--padding-size" "padding size"
+  [["-p" "--padding-size int" "padding size"
     :default 3
     :parse-fn #(Integer/parseInt %)
-    :validate [#(< 0 %) "number is over 0"]]
+    :validate [pos? "number is over 0"]]
    ; 数値とコマンド名の区切り文字
-   ["-d" "--delimiter" "delimiter"
+   ["-d" "--delimiter str" "delimiter"
     :default \:]
+   ["-r" "--round-prefix-chars-size int" "round prefix characters size"
+    :default 2
+    :parse-fn #(Integer/parseInt %)
+    :validate [pos? "number is over 0"]]
    ; 重みを出力しない
    ["-n" "--none"]
    ["-h" "--help"]])
 
 (defn usage
   [summary]
-  (->> ["meme is naming tool like linux commands."
-        ""
-        "options:"
-        summary]
-       (str/join \newline)))
+  (str/join \newline ["meme is naming tool like linux commands."
+                      ""
+                      "options:"
+                      summary]))
 
 (defn format-line
   "オプションごとの出力を返す"
@@ -48,15 +51,16 @@
 (defn -main
   [& args]
   (let [{:keys [options arguments errors summary]} (parse-opts args cli-options)]
-    (if (or (zero? (count arguments))
-            (:help options))
-      (println (usage summary))
-      (let [words (str/split (first args) #"\s")
-            common-words (read-words "resources/word.txt")
-            round-words (word/round-robin-words words 2)]
-        (doseq [m (->> (word/command-names words 2 common-words)
-                       (filter #(< 1 (count %)))
-                       (map #(weight/weight % common-words round-words))
-                       (sort-by :name)
-                       (sort-by :weight))]
-          (println (format-line m options)))))))
+    (cond
+      (or (zero? (count arguments))
+          (:help options)) (println (usage summary))
+      (seq errors) (println errors)
+      :else (let [words (str/split (first arguments) #"\s")
+                  common-words (read-words "resources/word.txt")
+                  round-words (word/round-robin-words words (:round-prefix-chars-size options))]
+              (doseq [m (->> round-words
+                             (filter #(< 1 (count %)))
+                             (map #(weight/weight % common-words round-words))
+                             (sort-by :name)
+                             (sort-by :weight))]
+                (println (format-line m options)))))))
