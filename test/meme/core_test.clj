@@ -32,20 +32,20 @@
       (is (= 0 (contains-then-inc "cat" []))))
     ))
 
-(deftest test-vowel-then-inc
-  (testing "vowel-then-incは"
+(deftest test-weight-vowel
+  (testing "weight-vowelは"
     (testing "母音が75%含まれるなら3"
-      (is (= 3 (vowel-then-inc "aiueo"))))
+      (is (= 3 (weight-vowel "aiueo"))))
     (testing "母音が50%含まれるなら2"
-      (is (= 2 (vowel-then-inc "caaat"))))
+      (is (= 2 (weight-vowel "caaat"))))
     (testing "母音が25%含まれるなら1"
-      (is (= 1 (vowel-then-inc "caat"))))
+      (is (= 1 (weight-vowel "caat"))))
     (testing "母音が含まれなければ0"
-      (is (= 0 (vowel-then-inc "ct"))))
+      (is (= 0 (weight-vowel "ct"))))
     (testing "母音が含まれなければ0"
-      (is (= 0 (vowel-then-inc ""))))
+      (is (= 0 (weight-vowel ""))))
     (testing "母音が含まれなければ0"
-      (is (= 0 (vowel-then-inc nil))))
+      (is (= 0 (weight-vowel nil))))
     ))
 
 (deftest test-short-consonant-then-inc
