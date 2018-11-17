@@ -50,9 +50,9 @@
 
 (deftest test-weight
   (testing "weightは"
-    (testing "汎用的な名前なら重みは大きい"
-      (is (= {:weight 8 :word "cat"} (weight "cat" ["concat" "cat"]))))
+    (testing "一般的な名前なら重みは大きい"
+      (is (= {:weight 8 :name "cat"} (weight "cat" ["concat" "cat"] []))))
     (testing ""
-      (is (= {:weight 4 :word "aaa"} (weight "aaa" ["concat" "cat"]))))
+      (is (= {:weight 4 :name "aaa"} (weight "aaa" ["concat" "cat"] []))))
     ))
 

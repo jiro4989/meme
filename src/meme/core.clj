@@ -47,9 +47,11 @@
 (defn -main
   [& args]
   (let [words (str/split (first args) #"\s")
-        common-words (read-words "resources/words.txt")]
+        common-words (read-words "resources/words.txt")
+        round-words (round-robin-words words 2)]
     (doseq [m (->> (command-names words 2 common-words)
                    (filter #(< 1 (count %)))
-                   (map #(w/weight % common-words))
-                   (sort #(< (:weight %1) (:weight %2))))]
+                   (map #(w/weight % common-words round-words))
+                   (sort-by :name)
+                   (sort-by :weight))]
       (println m))))

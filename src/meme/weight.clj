@@ -40,9 +40,10 @@
 
 (defn weight
   "重みを付与したマップとして返す"
-  [word common-words]
+  [word common-words round-words]
   (let [w (+ (weight-contain-word word common-words)
+             (weight-contain-word word round-words)
              (weight-vowel word)
              (weight-short-word word))]
-    {:weight w :word word}))
+    {:weight w :name word}))
 
