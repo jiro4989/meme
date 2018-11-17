@@ -28,24 +28,22 @@
       (is (= 0 (weight-vowel nil))))
     ))
 
-(deftest test-weight-short-consonant
-  (testing "weight-short-consonantは"
+(deftest test-weight-short-word
+  (testing "weight-short-wordは"
     (testing "子音が1文字なら0"
-      (is (= 0 (weight-short-consonant "x"))))
+      (is (= 0 (weight-short-word "x"))))
     (testing "子音が2文字なら2"
-      (is (= 2 (weight-short-consonant "xy"))))
+      (is (= 2 (weight-short-word "xy"))))
     (testing "子音が3文字なら1"
-      (is (= 1 (weight-short-consonant "xyz"))))
+      (is (= 1 (weight-short-word "cat"))))
     (testing "子音が4文字以上なら0"
-      (is (= 0 (weight-short-consonant "xyzx"))))
+      (is (= 0 (weight-short-word "xyzx"))))
     (testing "子音が4文字以上なら0"
-      (is (= 0 (weight-short-consonant "xyzxy"))))
+      (is (= 0 (weight-short-word "xyzxy"))))
     (testing "空文字なら0"
-      (is (= 0 (weight-short-consonant ""))))
+      (is (= 0 (weight-short-word ""))))
     (testing "空文字なら0"
-      (is (= 0 (weight-short-consonant nil))))
-    (testing "母音が含まれていたら0"
-      (is (= 0 (weight-short-consonant "xyaz"))))
+      (is (= 0 (weight-short-word nil))))
     ))
 
 ; (deftest test-weight

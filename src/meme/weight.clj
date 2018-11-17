@@ -27,27 +27,22 @@
         (< 0.25 r) 1
         :else 0))))
 
-(defn weight-short-consonant
-  "短い子音のみで構成されるかどうかで重みをつける"
+(defn weight-short-word
+  "短い単語かどうかで重みをつける"
   [word]
-  (if (or (empty? word)
-          (not (zero? (->> word
-                           (filter #(some (fn [x] (= x %)) vowel))
-                           count))))
-    0
-    (let [c (count word)]
-      (cond
-        (< c 2) 0
-        (< c 3) 2
-        (< c 4) 1
-        (< c 5) 0
-        :else 0))))
+  (let [c (count word)]
+    (cond
+      (< c 2) 0
+      (< c 3) 2
+      (< c 4) 1
+      (< c 5) 0
+      :else 0)))
 
 (defn weight
   "重みを付与したマップとして返す"
   [word common-words]
   (let [w (+ (weight-contain-word word common-words)
              (weight-vowel word)
-             (weight-short-consonant word))]
+             (weight-short-word word))]
     {:weight w :word word}))
 
