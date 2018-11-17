@@ -66,6 +66,17 @@
         summary]
        (str/join \newline)))
 
+(defn format-line
+  "オプションごとの出力を返す"
+  [m options]
+  (let [{:keys [none padding-size delimiter]} options
+        w (:weight m)
+        n (:name m)]
+    ; オプション数が増えたら出力が変わる可能性があるためcondを使用
+    (cond
+      none (format "%s" n)
+      :else (format (str "%" padding-size "d" delimiter "%s") w n))))
+
 (defn -main
   [& args]
   (let [{:keys [options arguments errors summary]} (parse-opts args cli-options)]
@@ -80,4 +91,4 @@
                        (map #(w/weight % common-words round-words))
                        (sort-by :name)
                        (sort-by :weight))]
-          (println m))))))
+          (println (format-line m options)))))))
