@@ -1,6 +1,6 @@
-(defproject meme "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+(defproject meme "1.0.0-SNAPSHOT"
+  :description "meme is naming tool like linux commands."
+  :url "https://github.com/jiro4989/meme"
   :plugins [[lein-kibit "0.1.6"]]
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
