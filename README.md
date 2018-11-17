@@ -9,8 +9,23 @@
 基本的な使い方は以下の通り。
 
 ```bash
-java -jar meme-1.0.0-SNAPSHOT-standalone.jar "origin full name"
-# ex: grep -> global regular expression print
+java -jar meme-1.0.0-SNAPSHOT-standalone.jar "global regular expression print"
+  5:glreexpr
+  5:glrepr
+  5:glrexp
+  5:glrexpr
+  5:grexpr
+  6:glreep
+  6:glreepr
+  6:glreexp
+  6:glrep
+  6:greepr
+  6:greexp
+  6:greexpr
+  6:grepr
+  6:grexp
+  7:greep
+  7:grep
 ```
 
 ヘルプ
