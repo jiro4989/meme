@@ -9,7 +9,7 @@
 (defn read-words
   "ファイルを読み込み、文字列を小文字に変換して重複を削除してベクタとして返す"
   [fp]
-  (->> (str/split (-> fp io/resource slurp) #"\n")
+  (->> (-> fp io/resource slurp (str/split #"\r?\n"))
        (map #(str/lower-case %))
        distinct))
 
