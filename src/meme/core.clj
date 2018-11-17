@@ -1,6 +1,7 @@
 (ns meme.core
   (:require [clojure.string :as str]
             [clojure.java.io :as io]
+            [clojure.tools.cli :refer [parse-opts]]
             [meme.weight :as w])
   (:gen-class))
 
@@ -44,14 +45,28 @@
        distinct
        sort))
 
+(def cli-options
+  ; 重み数値の空白詰め桁数
+  [["-p" "--padding-size size" "padding size"
+    :default 3
+    :parse-fn #(Integer/parseInt %)
+    :validate [#(< 0 %) "number is over 0"]]
+   ; 重みを出力しない
+   ["-n" "--none"]
+   ["-h" "--help"]])
+
 (defn -main
   [& args]
-  (let [words (str/split (first args) #"\s")
-        common-words (read-words "resources/words.txt")
-        round-words (round-robin-words words 2)]
-    (doseq [m (->> (command-names words 2 common-words)
-                   (filter #(< 1 (count %)))
-                   (map #(w/weight % common-words round-words))
-                   (sort-by :name)
-                   (sort-by :weight))]
-      (println m))))
+  (let [{:keys [options arguments errors summary]} (parse-opts args cli-options)]
+    (if (or (zero? (count arguments))
+            (:help options))
+      (println summary)
+      (let [words (str/split (first args) #"\s")
+            common-words (read-words "resources/words.txt")
+            round-words (round-robin-words words 2)]
+        (doseq [m (->> (command-names words 2 common-words)
+                       (filter #(< 1 (count %)))
+                       (map #(w/weight % common-words round-words))
+                       (sort-by :name)
+                       (sort-by :weight))]
+          (println m))))))
