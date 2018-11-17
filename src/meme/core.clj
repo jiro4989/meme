@@ -3,6 +3,9 @@
             [clojure.java.io :as io])
   (:gen-class))
 
+; 母音
+(def vowel "aiueo")
+
 (defn takes
   "文字列から文字列を指定数まで順に取り出して返す
   ex: (takes 2 \"xyz\")
@@ -53,7 +56,7 @@
   (if (empty? word)
     0
     (let [c (->> word
-                 (filter #(some (fn [x] (= x %)) "aiueo"))
+                 (filter #(some (fn [x] (= x %)) vowel))
                  count)
           r (-> c 
                 (/ (count word))
@@ -68,7 +71,7 @@
   [word]
   (if (or (empty? word)
           (not (zero? (->> word
-                           (filter #(some (fn [x] (= x %)) "aiueo"))
+                           (filter #(some (fn [x] (= x %)) vowel))
                            count))))
     0
     (let [c (count word)]
