@@ -24,6 +24,15 @@
       none (format "%s" n)
       :else (format (str "%" padding-size "d" delimiter "%s") weight n))))
 
+(defn weighting-words
+  "コマンド名候補リストに重みを付けてマップとして返す"
+  [round-words common-words]
+  (->> round-words
+       (filter #(< 1 (count %)))
+       (map #(weight/weight % common-words round-words))
+       (sort-by :name)
+       (sort-by :weight)))
+
 (def cli-options
   ; 重み数値の空白詰め桁数
   [["-p" "--padding-size int" "padding size"
@@ -58,9 +67,5 @@
       :else (let [words (str/split (first arguments) #"\s")
                   common-words (read-words "resources/word.txt")
                   round-words (word/round-robin-words words (:round-prefix-chars-size options))]
-              (doseq [m (->> round-words
-                             (filter #(< 1 (count %)))
-                             (map #(weight/weight % common-words round-words))
-                             (sort-by :name)
-                             (sort-by :weight))]
+              (doseq [m (weighting-words round-words common-words)]
                 (println (format-line m options)))))))
