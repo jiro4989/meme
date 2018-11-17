@@ -64,7 +64,7 @@
         (< 0.25 r) 1
         :else 0))))
 
-(defn short-consonant-then-inc
+(defn weight-short-consonant
   [word]
   (if (or (empty? word)
           (not (zero? (->> word
@@ -83,7 +83,7 @@
   [word common-words]
   (let [w (+ (contains-then-inc word common-words)
              (weight-vowel word)
-             (short-consonant-then-inc word))]
+             (weight-short-consonant word))]
     {:weight w :word word}))
 
 (defn -main
