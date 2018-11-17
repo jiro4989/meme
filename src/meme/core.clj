@@ -49,7 +49,7 @@
     0))
 
 (defn vowel-then-inc
-  [word & _]
+  [word]
   (if (empty? word)
     0
     (let [c (->> word
@@ -65,7 +65,7 @@
         :else 0))))
 
 (defn short-consonant-then-inc
-  [word & _]
+  [word]
   (if (or (empty? word)
           (not (zero? (->> word
                            (filter #(some (fn [x] (= x %)) "aiueo"))
@@ -81,7 +81,10 @@
 
 (defn weight
   [word common-words]
-  {:weight 0 :word word})
+  (let [w (+ (contains-then-inc word common-words)
+             (vowel-then-inc word)
+             (short-consonant-then-inc word))]
+    {:weight w :word word}))
 
 (defn -main
   [& args]

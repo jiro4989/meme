@@ -68,6 +68,12 @@
       (is (= 0 (short-consonant-then-inc "xyaz"))))
     ))
 
+; (deftest test-weight
+;   (testing "weightは"
+;     (testing "TODO"
+;       (is (= 0 (weight "cat" ["concat" "cat"]))))
+;     ))
+
 (deftest test-command-names
   (testing "command-namesは"
     (testing "コマンド名を返す"
