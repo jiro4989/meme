@@ -11,3 +11,5 @@ archive: jar target/*.jar README.md
 
 release: archive
 	ghr $(VERSION) $(RELEASE_DIR)/
+
+.PHONY: jar archive release
