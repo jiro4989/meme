@@ -6,12 +6,14 @@
   ex: (takes 2 \"xyz\")
   -> [\"x\" \"xy\"]"
   [n word]
-  (loop [took []
-         x 1]
-    (if (< n x)
-      took
-      (recur (conj took (str/join (take x word)))
-             (inc x)))))
+  ; 単語の文字数以上を指定できないように下限値を設定
+  (let [n2 (min n (count word))]
+    (loop [took []
+           x 1]
+      (if (< n2 x)
+        took
+        (recur (conj took (str/join (take x word)))
+               (inc x))))))
 
 (defn round-robin-words
   "単語のリストの先頭の文字列を取得し、総当たりで組み合わせて返す"
