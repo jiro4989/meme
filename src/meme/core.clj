@@ -9,11 +9,11 @@
   ex: (takes 2 \"xyz\")
   -> [\"x\" \"xy\"]"
   [n word]
-  (loop [taked []
+  (loop [took []
          x 1]
     (if (< n x)
-      taked
-      (recur (conj taked (str/join (take x word)))
+      took
+      (recur (conj took (str/join (take x word)))
              (inc x)))))
 
 (defn round-robin-words
