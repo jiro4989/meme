@@ -12,6 +12,20 @@ Linuxのポピュラーなコマンドには名前の付け方にある程度規
 
 **重みの付け方はかなりガバガバなんであくまで参考値程度に...**
 
+## 動作環境
+
+Java 10
+
+    openjdk version "10.0.2" 2018-07-17
+    OpenJDK Runtime Environment (build 10.0.2+13-Ubuntu-1ubuntu0.18.04.3)
+    OpenJDK 64-Bit Server VM (build 10.0.2+13-Ubuntu-1ubuntu0.18.04.3, mixed mode)
+
+## 開発環境
+
+- Clojure 1.9.0
+- Leiningen 2.8.1
+- Vim 8.0
+
 ## コマンドの例
 
 | cmd   | origin word                      |
