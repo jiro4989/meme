@@ -2,6 +2,30 @@
 
 自作のCLIツールを命名するためのツール。
 
+## Usage
+
+基本的な使い方は以下の通り。
+
+```bash
+java -jar meme-1.0.0-SNAPSHOT-standalone.jar "origin full name"
+# ex: grep -> global regular expression print
+```
+
+ヘルプ
+
+```bash
+java -jar meme-1.0.0-SNAPSHOT-standalone.jar -h
+```
+
+    meme is naming tool like linux commands.
+
+    options:
+      -p, --padding-size int             3  padding size
+      -d, --delimiter str                :  delimiter
+      -r, --round-prefix-chars-size int  2  round prefix characters size
+      -n, --none
+      -h, --help
+
 ## コマンドの例
 
 | cmd   | origin word                      |
@@ -43,30 +67,6 @@
 1. 常用単語(英語)
 1. 発音しやすい(母音を含む)
 1. 子音のみでコマンド名が短い
-
-## Usage
-
-基本的な使い方は以下の通り。
-
-```bash
-java -jar meme-1.0.0-SNAPSHOT-standalone.jar "origin full name"
-# ex: grep -> global regular expression print
-```
-
-ヘルプ
-
-```bash
-java -jar meme-1.0.0-SNAPSHOT-standalone.jar -h
-```
-
-    meme is naming tool like linux commands.
-
-    options:
-      -p, --padding-size int             3  padding size
-      -d, --delimiter str                :  delimiter
-      -r, --round-prefix-chars-size int  2  round prefix characters size
-      -n, --none
-      -h, --help
 
 ## License
 
