@@ -18,7 +18,7 @@
   [m options]
   (let [{:keys [none padding-size delimiter]} options
         weight (:weight m)
-        n (:name m)]
+        n (:name m)] ; nameという組み込み関数が存在するので分配束縛していない
     ; オプション数が増えたら出力が変わる可能性があるためcondを使用
     (cond
       none (format "%s" n)
