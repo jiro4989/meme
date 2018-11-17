@@ -51,6 +51,9 @@
     :default 3
     :parse-fn #(Integer/parseInt %)
     :validate [#(< 0 %) "number is over 0"]]
+   ; 数値とコマンド名の区切り文字
+   ["-d" "--delimiter" "delimiter"
+    :default \:]
    ; 重みを出力しない
    ["-n" "--none"]
    ["-h" "--help"]])
