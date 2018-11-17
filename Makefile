@@ -1,5 +1,8 @@
-jar: src/meme/*.clj src/resources/*
+jar: src/meme/*.clj src/resources/* test
 	lein uberjar
+
+test: src/meme/*.clj src/resources/*
+	lein test
 
 archive: jar README.md
 	$(eval VERSION := v$(shell ls target/*.jar | head -n 1 | sed -r 's@target/[^-]+-(.*)-SNAPSHOT.*@\1@g'))
@@ -13,4 +16,4 @@ archive: jar README.md
 release: archive
 	ghr $(VERSION) $(VERSION_DIR)
 
-.PHONY: jar archive release
+.PHONY: jar archive release test
