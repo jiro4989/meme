@@ -13,6 +13,17 @@
        (map #(str/lower-case %))
        distinct))
 
+(defn format-line
+  "オプションごとの出力を返す"
+  [m options]
+  (let [{:keys [none padding-size delimiter]} options
+        weight (:weight m)
+        n (:name m)]
+    ; オプション数が増えたら出力が変わる可能性があるためcondを使用
+    (cond
+      none (format "%s" n)
+      :else (format (str "%" padding-size "d" delimiter "%s") weight n))))
+
 (def cli-options
   ; 重み数値の空白詰め桁数
   [["-p" "--padding-size int" "padding size"
@@ -36,17 +47,6 @@
                       ""
                       "options:"
                       summary]))
-
-(defn format-line
-  "オプションごとの出力を返す"
-  [m options]
-  (let [{:keys [none padding-size delimiter]} options
-        weight (:weight m)
-        n (:name m)]
-    ; オプション数が増えたら出力が変わる可能性があるためcondを使用
-    (cond
-      none (format "%s" n)
-      :else (format (str "%" padding-size "d" delimiter "%s") weight n))))
 
 (defn -main
   [& args]
