@@ -42,6 +42,43 @@
        distinct
        sort))
 
+(defn contains-then-inc
+  [word common-words]
+  (if (some #(= % word) common-words)
+    5
+    0))
+
+(defn vowel-then-inc
+  [word & _]
+  (if (empty? word)
+    0
+    (let [c (->> word
+                 (filter #(some (fn [x] (= x %)) "aiueo"))
+                 count)
+          r (-> c 
+                (/ (count word))
+                float)]
+      (cond
+        (< 0.75 r) 3
+        (< 0.5 r) 2
+        (< 0.25 r) 1
+        :else 0))))
+
+(defn short-consonant-then-inc
+  [word & _]
+  (if (or (empty? word)
+          (not (zero? (->> word
+                           (filter #(some (fn [x] (= x %)) "aiueo"))
+                           count))))
+    0
+    (let [c (count word)]
+      (cond
+        (< c 2) 0
+        (< c 3) 2
+        (< c 4) 1
+        (< c 5) 0
+        :else 0))))
+
 (defn weight
   [word common-words]
   {:weight 0 :word word})
