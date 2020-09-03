@@ -4,9 +4,6 @@ on:
   push:
   pull_request:
 
-env:
-  NIM_VERSION: '1.2.4'
-
 jobs:
   skip:
     runs-on: ubuntu-latest
