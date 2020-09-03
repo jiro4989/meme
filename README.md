@@ -1,6 +1,7 @@
 # meme (mei mei)
 
 ![test](https://github.com/jiro4989/meme/workflows/test/badge.svg)
+[![codecov](https://codecov.io/gh/jiro4989/meme/branch/master/graph/badge.svg)](https://codecov.io/gh/jiro4989/meme)
 
 自作のCLIツールを命名するためのツール。
 
