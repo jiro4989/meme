@@ -1,6 +1,6 @@
 # meme (mei mei)
 
-[![Build Status](https://travis-ci.org/jiro4989/meme.svg?branch=master)](https://travis-ci.org/jiro4989/meme)
+![test](https://github.com/jiro4989/meme/workflows/test/badge.svg)
 
 自作のCLIツールを命名するためのツール。
 
