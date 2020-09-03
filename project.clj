@@ -1,7 +1,7 @@
 (defproject meme "1.0.4-SNAPSHOT"
   :description "meme is naming tool like linux commands."
   :url "https://github.com/jiro4989/meme"
-  :plugins [[lein-kibit "0.1.6"]]
+  :plugins [[lein-kibit "0.1.6"] [lein-cloverage "1.2.0"]]
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
